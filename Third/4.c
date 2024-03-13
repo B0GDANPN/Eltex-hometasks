@@ -28,8 +28,8 @@ char *strstr(char const *str, char const *pattern) {
 }
 int main() {
     char buf_string[buf_size], buf_substring[buf_size];
-    fgets(buf_string, buf_size, stdin);
-    fgets(buf_substring, buf_size, stdin);
+    fgets(buf_string, sizeof(buf_string), stdin);
+    fgets(buf_substring, sizeof(buf_substring), stdin);
     printf("%p", strstr(buf_string, buf_substring));
     return 0;
 }

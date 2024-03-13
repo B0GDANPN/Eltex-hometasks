@@ -14,4 +14,5 @@ add_executable(untitled
         #Third/1.c)
         #Third/2.c)
         #Third/3.c)
-        Third/4.c)
+        #Third/4.c)
+        Fourth.c)
