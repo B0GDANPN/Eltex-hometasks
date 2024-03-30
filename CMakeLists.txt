@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.26)
 project(untitled C)
 
-set(CMAKE_C_STANDARD 23)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=address")
+set(CMAKE_C_STANDARD 99)
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=address")
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=leak")
-add_executable(untitled
+add_executable(untitled)
         #First/12.c)
         #First/3.c)
         #First/4.c)
@@ -17,5 +17,5 @@ add_executable(untitled
         #Third/3.c)
         #Third/4.c)
         #Fourth.c)
-        #Fifth.c)
-        Six.c)
+        #Part1/Fifth.c)
+        #Six.c)

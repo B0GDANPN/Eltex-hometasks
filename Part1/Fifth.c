@@ -1,13 +1,10 @@
-//
-// Created by bogdan on 13.03.24.
-//
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
 int IsPassOk(void);
-
-int main(void) {
+int main(void)
+{
     int PwStatus;
     puts("Enter password:");
     PwStatus = IsPassOk();
@@ -19,9 +16,9 @@ int main(void) {
     }
     return 0;
 }
-
-int IsPassOk(void) {
+int IsPassOk(void)
+{
     char Pass[12];
-    fgets(Pass, 12, stdin);
+    gets(Pass);
     return 0 == strcmp(Pass, "test");
 }
