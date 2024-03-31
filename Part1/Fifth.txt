@@ -25,10 +25,10 @@ r
 //Можно set variable Pass="test" чтобы убедиться
 
 //в IsPassOk p *(Pass+11) покажет нуль(символ конца строки)
-(gdb) p (Pass+12)
+(gdb) p (Pass+12) // ему соответствует 0x7fffffffdf20
 $9 = 0x7fffffffdf20 "@\337\377\377\377\177"
 (gdb) x/2a 0x7fffffffdf20
 0x7fffffffdf20:	0x7fffffffdf40	0x4011b6 <main+32>
 //char[] Pass Начинается с 0x7fffffffdf14 добавим 8 символов и адресс 0x4011d8 в качестве символов
-run <<< $(echo -e "00000000000000000000\xd8\x11\x40\x00\x00\x00\x00\x00")
+run <<< $(echo -e "00000000000000000000\xd8\x11\x40\x00\x00\x00\x00\x00") // 12+8 нулей + адрес
 // \xd8\x11\x40\x00\x00\x00\x00\x00 -представление в little-endian 0x4011d8
