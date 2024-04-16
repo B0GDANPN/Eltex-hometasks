@@ -7,6 +7,14 @@
 #include "mul.h"
 #include "div.h"
 
+/*
+gcc add.c -c
+gcc sub.c -c
+gcc mul.c -c
+gcc div.c -c
+ar rc libcalc.a add.o sub.o mul.o div.o
+gcc main.c -o main -L. -lcalc
+*/
 int main() {
     int switcher, a, b;
     while (1) {
@@ -25,7 +33,7 @@ int main() {
                 break;
             case 2:
                 scanf("%d %d", &a, &b);
-                printf("%d\n",  sub(a, b));
+                printf("%d\n", sub(a, b));
                 break;
             case 3:
                 scanf("%d %d", &a, &b);
@@ -37,7 +45,7 @@ int main() {
                     printf("Second value must be non zero\n");
                     break;
                 }
-                printf("%d\n",  div(a, b));
+                printf("%d\n", div(a, b));
                 break;
             case 5:
                 printf("Exiting program.\n");
