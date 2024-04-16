@@ -4,5 +4,5 @@
 
 #ifndef ELTEX_HOMETASKS_ADD_H
 #define ELTEX_HOMETASKS_ADD_H
-
+int add(int a, int b);
 #endif //ELTEX_HOMETASKS_ADD_H
