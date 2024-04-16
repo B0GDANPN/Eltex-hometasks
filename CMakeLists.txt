@@ -4,7 +4,7 @@ project(untitled C)
 set(CMAKE_C_STANDARD 23)
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=address")
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=leak")
-add_executable(
+add_executable( untitled
         #Part1/First/12.c)
         #Part1/First/3.c)
         #Part1/First/4.c)

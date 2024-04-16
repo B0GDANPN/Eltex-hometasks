@@ -6,9 +6,9 @@
 #include "sub.h"
 #include "mul.h"
 #include "div.h"
+
 int main() {
-    int switcher;
-    int a,b,out;
+    int switcher, a, b;
     while (1) {
         printf("\n--- Calculator Menu ---\n");
         printf("1) Add\n");
@@ -18,28 +18,26 @@ int main() {
         printf("5) Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &switcher);
-        getchar();
-        scanf("%d %d\n",&a,&b);
         switch (switcher) {
             case 1:
-                out=add(a,b);
-                printf("%d\n",out);
+                scanf("%d %d", &a, &b);
+                printf("%d\n", add(a, b));
                 break;
             case 2:
-                out=sub(a,b);
-                printf("%d\n",out);
+                scanf("%d %d", &a, &b);
+                printf("%d\n",  sub(a, b));
                 break;
             case 3:
-                out=mul(a,b);
-                printf("%d\n",out);
+                scanf("%d %d", &a, &b);
+                printf("%d\n", mul(a, b));
                 break;
             case 4:
-                if (b==0){
+                scanf("%d %d", &a, &b);
+                if (b == 0) {
                     printf("Second value must be non zero\n");
                     break;
                 }
-                out= div(a,b);
-                printf("%d\n",out);
+                printf("%d\n",  div(a, b));
                 break;
             case 5:
                 printf("Exiting program.\n");
