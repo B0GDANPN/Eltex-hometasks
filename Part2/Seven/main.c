@@ -2,27 +2,63 @@
 // Created by bogdan on 12.03.24.
 //
 #include <stdio.h>
-#include "add.h"
-#include "sub.h"
-#include "mul.h"
-#include "div.h"
+#include <dlfcn.h>
+#include <stdlib.h>
+#include <string.h>
 
 /*
-gcc add.c -c
-gcc sub.c -c
-gcc mul.c -c
-gcc div.c -c
-ar rc libcalc.a add.o sub.o mul.o div.o
-gcc main.c -o main -L. -lcalc
+gcc add.c -fpic -c
+gcc sub.c -fpic -c
+gcc mul.c -fpic -c
+gcc myDiv.c -fpic -c
+gcc --shared add.o sub.o mul.o myDiv.o -o libcalc.so
+gcc main.c -o main -ldl
+
 */
+void handleCheck(void *ptr) {
+    if (ptr == NULL) {
+        printf("%s\n", dlerror());
+        exit(EXIT_FAILURE);
+    }
+}
+
+const int sizeInput = 100;
+
 int main() {
     int switcher, a, b;
+    void *handle = NULL;
+    int (*add)(int, int)=NULL, (*sub)(int, int)=NULL, (*mul)(int, int)=NULL, (*div)(int, int)=NULL;
+    char *error = NULL;
+    char lineLibraries[sizeInput];
+    printf("\n Enter names of operation, you must enter 0 in the end input\n");
+    handle = dlopen("./libcalc.so", RTLD_LAZY);
+    handleCheck(handle);
+    fgets(lineLibraries, sizeInput, stdin);
+    while (strcmp(lineLibraries, "0\n")!=0) {
+        if (strcmp(lineLibraries,"add\n") == 0 && !add) {
+            add = dlsym(handle, "add");
+        } else if (strcmp(lineLibraries,"sub\n") == 0 && !sub) {
+            sub = dlsym(handle, "sub");
+        } else if (strcmp(lineLibraries,"mul\n") == 0 && !mul) {
+            mul = dlsym(handle, "mul\n");
+        } else if (strcmp(lineLibraries,"div\n") == 0 && !div) {
+            div = dlsym(handle, "div");
+        } else {
+            printf("Incorrect name operation{add,sub,mul,div}\n");
+        }
+        error = dlerror();
+        if (error != NULL) {
+            printf("%s dlopen||dlsym error\n", error);
+            exit(EXIT_FAILURE);
+        }
+        fgets(lineLibraries, sizeInput, stdin);
+    }
     while (1) {
         printf("\n--- Calculator Menu ---\n");
-        printf("1) Add\n");
-        printf("2) Sub\n");
-        printf("3) Mul\n");
-        printf("4) Div\n");
+        if (add) printf("1) Add\n");
+        if (sub) printf("2) Sub\n");
+        if (mul)printf("3) Mul\n");
+        if (div) printf("4) Div\n");
         printf("5) Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &switcher);
@@ -49,6 +85,7 @@ int main() {
                 break;
             case 5:
                 printf("Exiting program.\n");
+                dlclose(handle);
                 return 0;
             default:
                 printf("Invalid switcher. Please try again.\n");
