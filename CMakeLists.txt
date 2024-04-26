@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.26)
 project(untitled C)
-
+#Процессоп динамлибы виртуал фс
 set(CMAKE_C_STANDARD 99)
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=address")
 #set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fsanitize=leak")
@@ -19,9 +19,9 @@ add_executable( untitled
         #Part1/Fourth.c
         #Part1/Fifth.c
         #Part2/Six.c
-        Part2/Seven/main.c
-        Part2/Seven/add.c
-        Part2/Seven/sub.c
-        Part2/Seven/mul.c
-        Part2/Seven/myDiv.c
+        Part2/Eight/main.c
+        Part2/Eight/add.c
+        Part2/Eight/sub.c
+        Part2/Eight/mul.c
+        Part2/Eight/myDiv.c
 )
