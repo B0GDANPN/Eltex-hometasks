@@ -9,7 +9,7 @@
 #define SIZE_NAME 10
 #define SIZE_TEL 10
 
-void nullCheck(void *ptr) {
+void null_check(void *ptr) {
     if (ptr == NULL)
         exit(0);
 }
@@ -26,15 +26,15 @@ typedef struct {
 } dyn_array;
 
 
-void clearArray(dyn_array *arr) {
+void clear_array(dyn_array *arr) {
     arr->ind = -1;
     arr->capacity = 0;
     free(arr->abonents);
 }
 
-void initArray(dyn_array *arr) {
+void init_array(dyn_array *arr) {
     abonent *ptr = (abonent *) malloc(sizeof(abonent));
-    nullCheck(ptr);
+    null_check(ptr);
     arr->abonents = ptr;
     arr->ind = -1;//указывает на последнего существующего абонента, при добавлении
     // нужно увеличивать ind, затем запись
@@ -50,7 +50,7 @@ void add_abonent(dyn_array *arr) {
     if (arr->ind == arr->capacity) {
         arr->capacity *= 2;
         arr->abonents = (abonent *) realloc(arr->abonents, sizeof(abonent) * arr->capacity);
-        nullCheck(arr->abonents);
+        null_check(arr->abonents);
     }
     printf("Enter name: ");
     //arr->abonents[arr->ind].name = (char *) malloc(sizeof(char) * SIZE_NAME);
@@ -63,7 +63,7 @@ void add_abonent(dyn_array *arr) {
 
 void delete_abonent(dyn_array *arr) {
     char *name = (char *) malloc(sizeof(char) * SIZE_NAME);
-    nullCheck(name);
+    null_check(name);
     printf("Enter name of the abonent to delete: ");
     fgets(name, SIZE_NAME, stdin);
 
@@ -83,7 +83,7 @@ void delete_abonent(dyn_array *arr) {
     if ((arr->ind!=-1)&& (arr->ind * 4< arr->capacity)){
         arr->capacity/=4;
         arr->abonents = (abonent *) realloc(arr->abonents, sizeof(abonent) * arr->capacity);
-        nullCheck(arr->abonents);
+        null_check(arr->abonents);
     }
     free(name);
     printf("Abonent not found.\n");
@@ -91,7 +91,7 @@ void delete_abonent(dyn_array *arr) {
 
 void search_abonents(dyn_array *arr) {
     char *name = (char *) malloc(sizeof(char) * SIZE_NAME);
-    nullCheck(name);
+    null_check(name);
     printf("Enter the name to search: ");
     fgets(name, SIZE_NAME, stdin);
     int found = 0;
@@ -128,7 +128,7 @@ void display_all_abonents(dyn_array *arr) {
 int main() {
     int switcher;
     dyn_array arr;
-    initArray(&arr);
+    init_array(&arr);
     while (1) {
         printf("\n--- Subscription Directory Menu ---\n");
         printf("1) Add a abonent\n");
@@ -154,7 +154,7 @@ int main() {
                 break;
             case 5:
                 printf("Exiting program.\n");
-                clearArray(&arr);
+                clear_array(&arr);
                 return 0;
             default:
                 printf("Invalid switcher. Please try again.\n");
